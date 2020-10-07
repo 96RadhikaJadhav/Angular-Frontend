@@ -106,7 +106,7 @@
 
                             <div *ngFor="let question of activity.questionDescriptions; index as i">
 
-                                <div class="form-group" *ngIf="activity.typeOfQuestion[i] == '☰ text'">
+                                <div class="form-group" *ngIf="activity.typeOfQuestion[i] == questiontypesEnum.Text">
                                     <label for="activityView{{i}}">{{activity.questionDescriptions[i]}}
                                         <span *ngIf="activity.required[i] !== 'true'">(optional)</span>
                                     </label>
@@ -114,7 +114,7 @@
                                            id="activityView{{i}}" [ngModelOptions]="{standalone: true}"/>
                                 </div>
 
-                                <div class="form-group" *ngIf="activity.typeOfQuestion[i] == '◉ multiple choice'">
+                                <div class="form-group" *ngIf="activity.typeOfQuestion[i] == questiontypesEnum.MultipleChoice">
                                     <label>{{activity.questionDescriptions[i]}}
                                         <span *ngIf="activity.required[i] !== 'true'">(optional)</span>
                                     </label>
@@ -125,7 +125,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group" *ngIf="activity.typeOfQuestion[i] == '☑ checkboxes'">
+                                <div class="form-group" *ngIf="activity.typeOfQuestion[i] == questiontypesEnum.Checkbox">
                                     <label>{{activity.questionDescriptions[i]}}
                                         <span *ngIf="activity.required[i] === 'true'">(pick at least 1)</span>
                                         <span *ngIf="activity.required[i] !== 'true'">(optional)</span>

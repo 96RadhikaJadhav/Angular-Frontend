@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {DatePipe} from "@angular/common";
 import {FilterPipe} from "../../../pipes/filter.pipe";
 import {Title} from "@angular/platform-browser";
+import {QuestionTypes} from "../questiontypes-enum";
+import {QuestiontypesUtil} from "../questiontypes-util";
 
 @Component({
     selector: 'app-activity-create',
@@ -44,7 +46,7 @@ export class ActivityCreateComponent implements OnInit {
     image: any;
 
     // options for question types
-    types = ["☰ text", "◉ multiple choice", "☑ checkboxes"];
+    types = QuestiontypesUtil.getList();
 
     datepicker = {open: false};
 
@@ -80,7 +82,8 @@ export class ActivityCreateComponent implements OnInit {
 
     // Each time a question is added, this creates a new empty object in the inputs variable
     add() {
-        const dataObj = {fullQuestion: '', type: "☰ text", options: [{op: 'option 1'}], required: '', privacyOfQuestion: ''};
+        const dataObj = {fullQuestion: '', type: QuestionTypes.Text,
+            options: [{op: 'option 1'}], required: '', privacyOfQuestion: ''};
         this.inputs.push(dataObj);
     }
 
@@ -236,7 +239,7 @@ export class ActivityCreateComponent implements OnInit {
                 }
 
                 // Check whether choices of multiple choice questions are empty
-                if (dataObj.type !== "☰ text" && dataObj.type !== "name" && dataObj.type !== "TU/e email") {
+                if (dataObj.type !== QuestionTypes.Text && dataObj.type !== "name" && dataObj.type !== "TU/e email") {
                     for (const option of dataObj.options) {
                         if (option.op === "" || !dataObj.options) {
                             this.empty = true;

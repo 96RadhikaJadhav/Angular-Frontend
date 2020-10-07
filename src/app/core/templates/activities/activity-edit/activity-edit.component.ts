@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {DatePipe} from "@angular/common";
 import {FilterPipe} from "../../../pipes/filter.pipe";
 import {Title} from "@angular/platform-browser";
+import {QuestionTypes} from "../questiontypes-enum";
+import {QuestiontypesUtil} from "../questiontypes-util";
 
 @Component({
     selector: 'app-activity-edit',
@@ -27,6 +29,8 @@ export class ActivityEditComponent implements OnInit {
 
     userGroups = [];
 
+    questiontypesEnum = QuestionTypes;
+
     // setting standard deadline for subscription deadline field
     deadline = {
         subscriptionDeadline: this.datePipe.transform(new Date(), "yyyy-MM-dd")
@@ -40,7 +44,7 @@ export class ActivityEditComponent implements OnInit {
     };
 
     // options for question types
-    types = ["☰ text", "◉ multiple choice", "☑ checkboxes"];
+    types = QuestiontypesUtil.getList();
 
     constructor(titleService: Title,
                 private activatedRoute: ActivatedRoute,
@@ -112,7 +116,8 @@ export class ActivityEditComponent implements OnInit {
 
     // adds an element to the inputs variable
     add() {
-        const dataObj = {fullQuestion: '', type: "☰ text", options: [{op: 'Option 1'}], required: '', privacyOfQuestion: ''};
+        const dataObj = {fullQuestion: '', type: QuestionTypes.Text,
+            options: [{op: 'Option 1'}], required: '', privacyOfQuestion: ''};
         this.inputs.push(dataObj);
     }
 
@@ -242,7 +247,7 @@ export class ActivityEditComponent implements OnInit {
                 if (dataObj.fullQuestion.includes("#;#")) { wrongCharacters = true; }
 
                 // Checks whether options of multiple choice questions are empty
-                if (dataObj.type !== "☰ text" && dataObj.type !== "name" && dataObj.type !== "TU/e email") {
+                if (dataObj.type !== QuestionTypes.Text && dataObj.type !== "name" && dataObj.type !== "TU/e email") {
                     for (const option of dataObj.options) {
                         if (option.op === "" || !dataObj.options) { empty = true; }
                     }

@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ActivitiesService} from "../../../services/activities/activities.service";
 import {TableExport} from "tableexport";
 import {Title} from "@angular/platform-browser";
+import {QuestionTypes} from "../questiontypes-enum";
 
 @Component({
     selector: 'app-activity-details',
@@ -22,6 +23,7 @@ export class ActivityDetailsComponent implements OnInit {
     subscribed: boolean;
     deadlinePassed: boolean;
     clickedExport: boolean;
+    questiontypesEnum = QuestionTypes;
 
     constructor(titleService: Title,
                 private activatedRoute: ActivatedRoute,
@@ -135,11 +137,13 @@ export class ActivityDetailsComponent implements OnInit {
         let filledIn = true;
         for (let i = 0; i < this.activity.numberOfQuestions; i++) {
             if (this.activity.required[i] === 'true') {
-                if (this.activity.typeOfQuestion[i] === '☰ text' && this.answers[i] === "") {
+                if (this.activity.typeOfQuestion[i] === QuestionTypes.Text && this.answers[i] === "") {
                     filledIn = false;
-                } else if (this.activity.typeOfQuestion[i] === '◉ multiple choice' && this.answers[i] === "") {
+                } else if (this.activity.typeOfQuestion[i] === QuestionTypes.MultipleChoice
+                        && this.answers[i] === "") {
                     filledIn = false;
-                } else if (this.activity.typeOfQuestion[i] === '☑ checkboxes' && !this.answers[i].includes(true)) {
+                } else if (this.activity.typeOfQuestion[i] === QuestionTypes.Checkbox
+                        && !this.answers[i].includes(true)) {
                     filledIn = false;
                 }
             }
@@ -156,7 +160,7 @@ export class ActivityDetailsComponent implements OnInit {
         this.answers[1] = this.user.email;
         for (let i = 2; i < this.activity.numberOfQuestions; i++) {
             let answer = "";
-            if (this.activity.typeOfQuestion[i] === '☑ checkboxes') {
+            if (this.activity.typeOfQuestion[i] === QuestionTypes.Checkbox) {
                 for (let j = 0; j < this.activity.formOptions[i].length; j++) {
                     if (this.answers[i][j] === true) {
                         if (answer !== "") { answer += " - "; }
