@@ -5,7 +5,11 @@ export class AppConstants {
     // ================================================
 
     // Different types of memberships a user can have
-    public static typesOfMemberships = ["Member", "Alumni", "Associate member"];
+    public static memberMembership = "Member";
+    public static alumniMembership = "Alumni";
+    public static associateMemberMembership = "Associate member";
+    public static typesOfMemberships = [AppConstants.memberMembership,
+        AppConstants.alumniMembership, AppConstants.associateMemberMembership];
 
     // ================================================
     // Company opportunity related constants

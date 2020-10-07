@@ -45,6 +45,8 @@ export class UserEditComponent implements OnInit {
 
     member;
 
+    appConstants = AppConstants;
+
     constructor(titleService: Title,
                 private activatedRoute: ActivatedRoute,
                 private usersService: UsersService) {

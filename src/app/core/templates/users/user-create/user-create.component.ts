@@ -20,9 +20,6 @@ export class UserCreateComponent implements OnInit {
     // Different generations in which students can say that started at honors academy
     generations = [2016, 2017, 2018, 2019, 2020];
 
-    // Different membership statuses
-    memberships = AppConstants.typesOfMemberships;
-
     // declare form fields for ng model bindings
     displayName;
     email;
@@ -37,6 +34,8 @@ export class UserCreateComponent implements OnInit {
     phone;
     password;
     portraitRight;
+
+    appConstants = AppConstants;
 
     constructor(titleService: Title,
                 private usersService: UsersService) {

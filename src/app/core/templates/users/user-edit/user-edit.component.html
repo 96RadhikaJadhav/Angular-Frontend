@@ -57,7 +57,7 @@
                         <label for="userCreate-member" class="col-xs-12 col-sm-3 control-label">Membership</label>
                         <div class="col-xs-12 col-sm-9">
                             <select [(ngModel)]="user.honorsMembership" class="form-control" id="userCreate-member" [ngModelOptions]="{standalone: true}">
-                                <option *ngFor="let ms of memberships" [value]="ms">{{ms}}</option>
+                                <option *ngFor="let ms of appConstants.typesOfMemberships" [value]="ms">{{ms}}</option>
                             </select>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
 
                     <div class="form-group">
                         <label for="userEdit-major" class="col-xs-12 col-sm-3 control-label">
-                            <span *ngIf="user.honorsMembership == memberships[1] || user.honorsMembership == memberships[2]">(old) </span>TU/e Major</label>
+                            <span *ngIf="user.honorsMembership == appConstants.associateMemberMembership || user.honorsMembership == appConstants.alumniMembership">(old) </span>TU/e Major</label>
                         <div class="col-xs-12 col-sm-9">
                             <input type="text" [(ngModel)]="user.major" class="form-control" id="userEdit-major" [ngModelOptions]="{standalone: true}">
                         </div>
@@ -95,7 +95,7 @@
 
                     <div class="form-group">
                         <label for="userCreate-track" class="col-xs-12 col-sm-3 control-label">
-                            <span *ngIf="user.honorsMembership == memberships[1] || user.honorsMembership == memberships[2]">(old) </span>Honors track</label>
+                            <span *ngIf="user.honorsMembership == appConstants.associateMemberMembership || user.honorsMembership == appConstants.alumniMembership">(old) </span>Honors track</label>
                         <div class="col-xs-12 col-sm-9">
                             <select [(ngModel)]="user.track" class="form-control" id="userCreate-track" [ngModelOptions]="{standalone: true}">
                                 <option *ngFor="let track of tracks" [value]="track">{{track}}</option>
@@ -131,13 +131,13 @@
                     <div class="form-group">
                         <label for="userEdit-cardNumber" class="col-xs-12 col-sm-3 control-label">Card number</label>
                         <div class="col-xs-12 col-sm-9">
-                            <input type="tel" [disabled]="user.honorsMembership == memberships[1] || user.honorsMembership == memberships[2]" [(ngModel)]="user.campusCardNumber" class="form-control" id="userEdit-cardNumber" [ngModelOptions]="{standalone: true}">
+                            <input type="tel" [disabled]="user.honorsMembership == appConstants.associateMemberMembership || user.honorsMembership == appConstants.alumniMembership" [(ngModel)]="user.campusCardNumber" class="form-control" id="userEdit-cardNumber" [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
 
                 </div>
 
-                <p class="hidden-sm col-xs-12 col-md-4 control-label text-left small" *ngIf="!(user.honorsMembership == memberships[1] || user.honorsMembership == memberships[2])">
+                <p class="hidden-sm col-xs-12 col-md-4 control-label text-left small" *ngIf="!(user.honorsMembership == appConstants.associateMemberMembership || user.honorsMembership == appConstants.alumniMembership)">
                     This will be used to grant you access to the Honors Room.
                 </p>
             </div>
