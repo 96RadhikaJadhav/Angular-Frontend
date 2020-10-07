@@ -1,6 +1,13 @@
 export class AppConstants {
 
     // ================================================
+    // User related constants
+    // ================================================
+
+    // Different types of memberships a user can have
+    public static typesOfMemberships = ["Member", "Alumni", "Associate member"];
+
+    // ================================================
     // Company opportunity related constants
     // ================================================
 

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../../services/users/users.service";
 import {Title} from "@angular/platform-browser";
+import {AppConstants} from "../../../../app.constants";
 
 @Component({
     selector: 'app-user-create',
@@ -20,7 +21,7 @@ export class UserCreateComponent implements OnInit {
     generations = [2016, 2017, 2018, 2019, 2020];
 
     // Different membership statuses
-    memberships = ["Member", "Alumni", "Associate member"];
+    memberships = AppConstants.typesOfMemberships;
 
     // declare form fields for ng model bindings
     displayName;

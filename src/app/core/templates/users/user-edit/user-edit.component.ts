@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {UsersService} from "../../../services/users/users.service";
 import {Title} from "@angular/platform-browser";
+import {AppConstants} from "../../../../app.constants";
 
 @Component({
     selector: 'app-user-edit',
@@ -24,7 +25,7 @@ export class UserEditComponent implements OnInit {
     groupRoles = ["Member", "Chair", "Secretary", "Treasurer", "Board representative"];
 
     // Different membership statuses
-    memberships = ["Member", "Alumni", "Associate member"];
+    memberships = AppConstants.typesOfMemberships;
 
     // Different generations in which students can say that started at honors academy
     generations = [2016, 2017, 2018, 2019, 2020];
